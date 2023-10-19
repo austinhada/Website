@@ -50,13 +50,20 @@
 <section>
     <h2>About Me</h2>
     <p>
-        I'm passionate about various domains that span both tech and leisure. Whether it's diving deep into data, listening to Electronic Dance Music (EDM), playing Magic: The Gathering (MTG), or keeping up with the thrilling races of Formula 1 - each of these facets contributes to who I am.
+        I'm passionate about various domains that span both tech and leisure. Whether it's diving deep into data, listening to Electronic Dance Music (EDM), playing Magic: The Gathering (MTG), or keeping up with Formula 1 - each of these facets contributes to who I am.
     </p>
 </section>
 
 <section id="actions">
-    <a href=".\resume.html" class="btn btn-info" role="button">Resume</a>
-    <a href="#projects" class="btn btn-info" role="button">Projects</a>
+    <a href=".\resume.html" 
+       class="btn btn-info" 
+       role="button"
+       title="View My Resume"
+       >Resume</a>
+    <a href="#projects" 
+       class="btn btn-info" 
+       role="button"
+       title="View My Projects">Projects (coming soon)</a>
 </section>
 
 <footer>
@@ -69,7 +76,7 @@
 
     // Use the variable to set content on the page
     document.getElementById("headerName").textContent = name;
-    document.getElementById("pageTitle").textContent = `${name} - Portfolio`;
+    document.getElementById("pageTitle").textContent = `Home - ${name}`;
     document.getElementById("footerCopyright").innerHTML = `&copy; 2023 ${name}. All rights reserved.`;
 </script>
 
