@@ -21,7 +21,22 @@
            cursor: pointer;
            transition: background-color 0.3s ease;
         }
-        .download-resume-button:hover {
+       .home-button {
+           position: absolute;
+           top: 10px;
+           left: 10px;
+           display: inline-block;
+           padding: 10px 20px;
+           background-color: #f4f4f4;
+           color: #000000;
+           border: none;
+           border-radius: 5px;
+           text-decoration: none;
+           font-weight: bold;
+           cursor: pointer;
+           transition: background-color 0.3s ease;
+        }
+        .download-resume-button:hover, .home-button {
             background-color: #e4e4e4;
         }
         header {
@@ -58,7 +73,14 @@
            download="Austin_Hada_Resume" 
            class="download-resume-button"
            title="Download My Resume">
-            <img src = "./images/download.svg";
+            <img src = "./images/download_icon.svg";
+                 alt="Download My Resume"; 
+                 height=20px/>
+        </a>
+        <a href="./index.html" 
+           class="home-button"
+           title="Home Page">
+            <img src = "./images/home_icon.svg";
                  alt="Download My Resume"; 
                  height=20px/>
         </a>
