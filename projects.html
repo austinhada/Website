@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L. Austin Hadamuscin - Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+        }
+        .menu {
+            position: fixed;
+            width: 200px;
+            height: 100%;
+            background: #333;
+            color: white;
+            padding: 20px;
+            padding-top: 40px; /* Add more space at the top for the name and home button */
+        }
+        .menu-item {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .menu-item:hover, .active {
+            background: #575757;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: #f4f4f4;
+            margin-left: 200px;
+            padding-top: 40px; /* Increase top padding to avoid overlap */
+        }
+        .project {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .home-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            display: inline-block;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+        .home-button:hover {
+            background-color: #575757;
+        }
+        .home-button img {
+            height: 20px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Home Button -->
+<a href="./index.html" class="home-button" title="Home Page">
+    <img src="./images/home_icon.svg" alt="Home" />
+</a>
+
+<div class="menu" id="menu">
+    <h2>L. Austin Hadamuscin</h2>
+    <h3>Projects</h3>
+    <!-- Dynamically filled with JavaScript -->
+</div>
+
+<div class="content" id="content">
+    <!-- Projects will be dynamically inserted here by JavaScript -->
+</div>
+
+<script>
+    // List of projects with partners' LinkedIn URLs
+    const projects = [
+        {
+            title: "Master's Thesis: Information Approach to Change Point Analysis and its Application to Fiscally Standardized Cities",
+            shortTitle: "Master's Thesis",
+            description: "This thesis delves into detecting shifts in federal funding to cities using Change Point Analysis. I focus on applying two methods, the Schwarz Information Criterion (SIC) and the Modified Schwarz Information Criterion (MIC), to the Fiscally Standardized Cities dataset. Through Exploratory Data Analysis and various simulations, I compare their effectiveness. My findings indicate a close performance between SIC and MIC, but MIC seems a tad more effective, or at least more cautious, in pinpointing changes. This work aims to shed light on how cities can better anticipate and plan for variations in federal funding.",
+            link: "http://rave.ohiolink.edu/etdc/view?acc_num=bgsu1654622121917738",
+            partners: [
+                {name: "Dr. Wei Ning", url: "https://www.linkedin.com/in/wei-ning-profile/"}
+            ],
+            label: "Advisor"
+        },
+        {
+            title: "The Effect of Sound on Player Performance in Mario Kart 8 Deluxe",
+            shortTitle: "Mario Kart 8 Study",
+            description: "We delved into how various factors, such as the number of players, game difficulty, and presence or absence of sound, affect player performance in the game. Our comprehensive approach included data collection, assumption checking, and extensive analysis using ANOVA and other statistical methods. Despite our thorough investigation, we found that sound and player count didn't significantly affect race times; however, the game's difficulty did influence performance as expected.",
+            link: "https://github.com/austinhada/Experimental-Design-Final-Project",
+            partners: [
+                {name: "Olusegun Omotunde", url: "https://www.linkedin.com/in/olusegun-omotunde/"},
+                {name: "Daniel Sasu", url: "https://www.linkedin.com/in/daniel-sasu/"}
+            ],
+            label: "Project Partners"
+        }
+        // Add more projects as needed
+    ];
+
+    // Function to create project HTML
+    function createProjectHTML(project, index) {
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project');
+        projectElement.id = 'project' + index;
+        projectElement.innerHTML = `
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <a href="${project.link}" target="_blank">View Project</a>
+            <div class="partners">
+                <h4>${project.label}</h4>
+                <ul>
+                    ${project.partners.map(partner => `<li><a href="${partner.url}" target="_blank">${partner.name}</a></li>`).join("")}
+                </ul>
+            </div>
+        `;
+        return projectElement;
+    }
+
+    // Populate content and menu
+    const contentElement = document.getElementById('content');
+    const menuElement = document.getElementById('menu');
+    projects.forEach((project, index) => {
+        contentElement.appendChild(createProjectHTML(project, index));
+        const menuItem = document.createElement('div');
+        menuItem.textContent = project.shortTitle;
+        menuItem.classList.add('menu-item');
+        menuItem.onclick = () => document.getElementById('project' + index).scrollIntoView();
+        menuElement.appendChild(menuItem);
+    });
+
+    // Update active menu item on scroll
+    window.onscroll = () => {
+        let current = "";
+        projects.forEach((project, index) => {
+            const section = document.getElementById('project' + index);
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 20) {
+                current = 'project' + index;
+            }
+        });
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.classList.remove('active');
+            if (item.textContent === projects.find(p => 'project' + projects.indexOf(p) === current)?.shortTitle) {
+                item.classList.add('active');
+            }
+        });
+    };
+</script>
+
+</body>
+</html>
