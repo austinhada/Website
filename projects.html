@@ -120,7 +120,7 @@
     function createProjectHTML(project, index) {
         const projectElement = document.createElement('div');
         projectElement.classList.add('project');
-        projectElement.id = 'project' + index;
+        projectElement.id = 'project' + index;  // Important: Set a unique ID for each project
         projectElement.innerHTML = `
             <h3>${project.title}</h3>
             <p>${project.description}</p>
@@ -141,9 +141,9 @@
     projects.forEach((project, index) => {
         contentElement.appendChild(createProjectHTML(project, index));
         const menuItem = document.createElement('div');
-        menuItem.textContent = project.shortTitle;
+        menuItem.textContent = project.shortTitle;  // Use short title for the menu
         menuItem.classList.add('menu-item');
-        menuItem.onclick = () => document.getElementById('project' + index).scrollIntoView();
+        menuItem.onclick = () => document.getElementById('project' + index).scrollIntoView({ behavior: 'smooth' });
         menuElement.appendChild(menuItem);
     });
 
